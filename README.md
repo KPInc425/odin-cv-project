@@ -1,9 +1,7 @@
 # odin-cv-project
 
-
-todo
-
-create practical experience component
+ToDo
+-Styling
 
 --possible changes
 break buttons into their own components?

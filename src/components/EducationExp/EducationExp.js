@@ -21,7 +21,6 @@ class EducationExp extends Component {
 
         this.makeEditable = this.makeEditable.bind(this);
         this.handleInput = this.handleInput.bind(this);
-        this.saveData = this.saveData.bind(this);
     }
 
     getYears = () => {
@@ -58,10 +57,7 @@ class EducationExp extends Component {
         }
     }
 
-    saveData = (e) => {
-        e.preventDefault();
-        console.log("clicked button");
-    }
+
 
     cancelEdit = (e) => {
         console.log(e.target.parentNode);
@@ -80,7 +76,7 @@ class EducationExp extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={ this.saveData } id={this.props.id}>
+                <form onSubmit={ (e) => e.preventDefault() } id={this.props.id}>
                     <div>
                         <label htmlFor="school">School:</label> 
                         { this.state.allowEdit 
