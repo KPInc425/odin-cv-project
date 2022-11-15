@@ -8,20 +8,37 @@ class App extends Component {
     super();
 
     this.state = {
-      eduExpArray: [],
+      eduExpArray: [
+        {
+        school: "",
+        study: "", 
+        startDate: "",
+        endDate: "",
+        }
+      ],
     }
   }
 
 
-  addNewEduExp = (e) => {
+  addNewEduExpTemplate = (e) => {
     console.log(e.target.parentNode);
     
     this.setState({
       eduExpArray: [...this.state.eduExpArray, {school: "", study: "", startDate: "", endDate: ""}]
     })
-   
-    
   }
+
+  addEduExp = (newExp, index) => {
+    const tmpArray = this.state.eduExpArray;
+
+    tmpArray[index] = newExp;
+
+    this.setState({
+      eduExpArray: tmpArray,
+    })
+  }
+
+
 
   render() {
     return (
@@ -29,8 +46,8 @@ class App extends Component {
         <ContactInfo />
         <div id="eduExp">
           <h2 style={{ display: "inline-block", marginRight: 5}}>Education Experience</h2>
-          <button onClick={ this.addNewEduExp }>Add Experience</button>
-          {this.state.eduExpArray.map((item) => (<EducationExp key={ Math.floor(Math.random() * 987654)}/>))}
+          <button onClick={ this.addNewEduExpTemplate }>Add Experience</button>
+          {this.state.eduExpArray.map((item, index) => (<EducationExp key={ index } eduData={ item } id={ index } addEduExp={ this.addEduExp }/>))}
         </div>
       </div>
     );

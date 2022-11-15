@@ -3,15 +3,16 @@ import './EducationExp.css';
 
 
 class EducationExp extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
-            school: "",
-            study: "",
-            startDate: "",
-            endDate: "",
+            school: props.eduData.school,
+            study: props.eduData.study,
+            startDate: props.eduData.startDate,
+            endDate: props.eduData.endDate,
             allowEdit: false,
+            index: props.id,
             // school: "Bakersfield College",
             // study: "Industrial Automation w/ Electronics Option",
             // startDate: "2015",
@@ -63,16 +64,23 @@ class EducationExp extends Component {
     }
 
     cancelEdit = (e) => {
+        console.log(e.target.parentNode);
         e.preventDefault();
         this.setState({
             allowEdit: false,
         })
+        this.props.addEduExp({
+            school: this.state.school,
+            study: this.state.study,
+            startDate: this.state.startDate,
+            endDate: this.state.endDate,
+        }, this.state.index);
     }
 
     render() {
         return (
             <div>
-                <form onSubmit={ this.saveData }>
+                <form onSubmit={ this.saveData } id={this.props.id}>
                     <div>
                         <label htmlFor="school">School:</label> 
                         { this.state.allowEdit 
