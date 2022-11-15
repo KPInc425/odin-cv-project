@@ -6,14 +6,14 @@ class PracticalExp extends Component {
         super(props);
 
         this.state = {
-            company: props.practData.company, 
-            position: props.practData.position, 
-            title: props.practData.title, 
-            tasks: props.practData.tasks, 
-            startDate: props.practData.startDate, 
-            endDate: props.practData.endDate,
+            company: "", 
+            position: "", 
+            title: "", 
+            tasks: "", 
+            startDate: "", 
+            endDate: "",
             allowEdit: false,
-            index: props.id,
+            // index: props.id,
         }
 
         this.makeEditable = this.makeEditable.bind(this);
@@ -86,36 +86,36 @@ class PracticalExp extends Component {
                     <label htmlFor="company">Company:</label> 
                     { this.state.allowEdit 
                         ? 
-                        <input id="company" onChange={ this.handleInput } placeholder={ this.state.company }></input> 
+                        <input id="company" onChange={ this.handleInput } placeholder={ this.props.company }></input> 
                         : 
-                        this.state.company 
+                        this.props.company 
                     }
                 </div>
                 <div>
                     <label htmlFor="position">Position:</label> 
                     { this.state.allowEdit 
                         ? 
-                        <input id="position" onChange={ this.handleInput } placeholder={ this.state.position }></input> 
+                        <input id="position" onChange={ this.handleInput } placeholder={ this.props.position }></input> 
                         : 
-                        this.state.position 
+                        this.props.position 
                     }
                 </div>
                 <div>
                     <label htmlFor="title">Title:</label> 
                     { this.state.allowEdit 
                         ? 
-                        <input id="title" onChange={ this.handleInput } placeholder={ this.state.title }></input> 
+                        <input id="title" onChange={ this.handleInput } placeholder={ this.props.title }></input> 
                         : 
-                        this.state.title 
+                        this.props.title 
                     }
                 </div>
                 <div>
                     <label htmlFor="tasks">Tasks:</label> 
                     { this.state.allowEdit 
                         ? 
-                        <input id="tasks" onChange={ this.handleInput } placeholder={ this.state.tasks }></input> 
+                        <input id="tasks" onChange={ this.handleInput } placeholder={ this.props.tasks }></input> 
                         : 
-                        this.state.tasks 
+                        this.props.tasks 
                     }
                 </div>
                 
@@ -124,13 +124,13 @@ class PracticalExp extends Component {
                     { this.state.allowEdit
                         ?
                         <div style={{ display: "inline-block"}}> 
-                            <input id="startDate" onChange={ this.handleInput } placeholder={ this.state.startDate }></input> 
+                            <input id="startDate" onChange={ this.handleInput } placeholder={ this.props.startDate }></input> 
                             - 
-                            <input id="endDate" onChange={ this.handleInput } placeholder={ this.state.endDate }></input>
+                            <input id="endDate" onChange={ this.handleInput } placeholder={ this.props.endDate }></input>
                         </div>
                         :
                         <div style={{ display: "inline-block"}}>
-                            { `${this.state.startDate || "Start Date" } - ${this.state.endDate || "End Date" }` } 
+                            { `${this.props.startDate || "Start Date" } - ${this.props.endDate || "End Date" }` } 
                             { (this.getYears() > 0) ? ` (${this.getYears()} yrs)` : null } 
                         </div>
                     }

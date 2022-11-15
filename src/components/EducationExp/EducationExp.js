@@ -7,12 +7,12 @@ class EducationExp extends Component {
         super(props);
 
         this.state = {
-            school: props.eduData.school,
-            study: props.eduData.study,
-            startDate: props.eduData.startDate,
-            endDate: props.eduData.endDate,
+            school: "",
+            study: "",
+            startDate: "",
+            endDate: "",
             allowEdit: false,
-            index: props.id,
+            // index: props.id,
             // school: "Bakersfield College",
             // study: "Industrial Automation w/ Electronics Option",
             // startDate: "2015",
@@ -70,7 +70,7 @@ class EducationExp extends Component {
             study: this.state.study,
             startDate: this.state.startDate,
             endDate: this.state.endDate,
-        }, this.state.index);
+        }, this.props.index);
     }
 
     render() {
@@ -81,18 +81,18 @@ class EducationExp extends Component {
                         <label htmlFor="school">School:</label> 
                         { this.state.allowEdit 
                             ? 
-                            <input id="school" onChange={ this.handleInput } placeholder={ this.state.school }></input> 
+                            <input id="school" onChange={ this.handleInput } placeholder={ this.props.school }></input> 
                             : 
-                            this.state.school 
+                            this.props.school 
                         }
                     </div>
                     <div>
                         <label htmlFor="study">Study:</label> 
                         { this.state.allowEdit 
                             ? 
-                            <input id="study" onChange={ this.handleInput } placeholder={ this.state.study }></input> 
+                            <input id="study" onChange={ this.handleInput } placeholder={ this.props.study }></input> 
                             : 
-                            this.state.study 
+                            this.props.study 
                         }
                     </div>
                     <div>
@@ -100,13 +100,13 @@ class EducationExp extends Component {
                         { this.state.allowEdit
                             ?
                             <div style={{ display: "inline-block"}}> 
-                                <input id="startDate" onChange={ this.handleInput } placeholder={ this.state.startDate }></input> 
+                                <input id="startDate" onChange={ this.handleInput } placeholder={ this.props.startDate }></input> 
                                 - 
-                                <input id="endDate" onChange={ this.handleInput } placeholder={ this.state.endDate }></input>
+                                <input id="endDate" onChange={ this.handleInput } placeholder={ this.props.endDate }></input>
                             </div>
                             :
                             <div style={{ display: "inline-block"}}>
-                                { `${this.state.startDate || "Start Date" } - ${this.state.endDate || "End Date" }` } 
+                                { `${this.props.startDate || "Start Date" } - ${this.props.endDate || "End Date" }` } 
                                 { (this.getYears() > 0) ? ` (${this.getYears()} yrs)` : null } 
                             </div>
                         }
