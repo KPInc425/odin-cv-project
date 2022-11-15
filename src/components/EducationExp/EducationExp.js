@@ -37,6 +37,24 @@ class EducationExp extends Component {
 
     handleInput = (e) => {
         console.log(e.target.value);
+
+        if (e.target.id === "school") {
+            this.setState({
+                school: e.target.value,
+            })
+        } else if (e.target.id === "study") {
+            this.setState({
+                study: e.target.value,
+            })
+        } else if (e.target.id === "startDate") {
+            this.setState({
+                startDate: e.target.value,
+            })
+        } else if (e.target.id === "endDate") {
+            this.setState({
+                endDate: e.target.value,
+            })
+        }
     }
 
     saveData = (e) => {
@@ -44,30 +62,58 @@ class EducationExp extends Component {
         console.log("clicked button");
     }
 
+    cancelEdit = (e) => {
+        e.preventDefault();
+        this.setState({
+            allowEdit: false,
+        })
+    }
+
     render() {
         return (
             <div>
                 <form onSubmit={ this.saveData }>
                     <div>
-                        <label htmlFor="school">School:</label> { this.state.allowEdit ? <input id="school" onChange={ this.handleInput } ></input> : this.state.school }
+                        <label htmlFor="school">School:</label> 
+                        { this.state.allowEdit 
+                            ? 
+                            <input id="school" onChange={ this.handleInput } placeholder={ this.state.school }></input> 
+                            : 
+                            this.state.school 
+                        }
                     </div>
                     <div>
-                        <label htmlFor="study">Study:</label> { this.state.allowEdit ? <input id="study" onChange={ this.handleInput } ></input> : this.state.study }
+                        <label htmlFor="study">Study:</label> 
+                        { this.state.allowEdit 
+                            ? 
+                            <input id="study" onChange={ this.handleInput } placeholder={ this.state.study }></input> 
+                            : 
+                            this.state.study 
+                        }
                     </div>
                     <div>
                         <label>Date of Study:</label>
                         { this.state.allowEdit
                             ?
-                            <div style={{ display: "inline-block", marginLeft: 4}}> <input id="startDate" onChange={ this.handleInput } ></input> - <input id="endDate" onChange={ this.handleInput } ></input></div>
+                            <div style={{ display: "inline-block"}}> 
+                                <input id="startDate" onChange={ this.handleInput } placeholder={ this.state.startDate }></input> 
+                                - 
+                                <input id="endDate" onChange={ this.handleInput } placeholder={ this.state.endDate }></input>
+                            </div>
                             :
-                            <div style={{ display: "inline-block", marginLeft: 4}}>
+                            <div style={{ display: "inline-block"}}>
                                 { `${this.state.startDate || "Start Date" } - ${this.state.endDate || "End Date" }` } 
                                 { (this.getYears() > 0) ? ` (${this.getYears()} yrs)` : null } 
                             </div>
                         }
                         {/* { (this.getYears() > 0) ? ` (${this.getYears()} yrs)` : null } */}
                     </div>
-                    { this.state.allowEdit ? <button type="submit">Submit</button> : <button onClick={ this.makeEditable }>Edit</button> }
+                    { this.state.allowEdit 
+                        ? 
+                        <button onClick={ this.cancelEdit }>Done</button> 
+                        : 
+                        <button onClick={ this.makeEditable }>Edit</button> 
+                    }
                 </form>
             </div>
         )
